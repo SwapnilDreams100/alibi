@@ -3,15 +3,13 @@ import logging
 import numpy as np
 import string
 import tensorflow as tf
-
+import theano
 from alibi.api.defaults import DEFAULT_DATA_INTGRAD, DEFAULT_META_INTGRAD
 from alibi.utils.approximation_methods import approximation_parameters
 from alibi.api.interfaces import Explainer, Explanation
 from tensorflow.keras.models import Model
 from typing import Callable, TYPE_CHECKING, Union
-
-if TYPE_CHECKING:  # pragma: no cover
-    import keras  # noqa
+import keras
 
 logger = logging.getLogger(__name__)
 
@@ -351,7 +349,6 @@ class IntegratedGradients(Explainer):
         self.method = method
         self.internal_batch_size = internal_batch_size
     
-    @tf.function
     def explain(self,
                 X: np.ndarray,
                 baselines: Union[None, int, float, np.ndarray] = None,
