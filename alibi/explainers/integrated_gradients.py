@@ -415,7 +415,7 @@ class IntegratedGradients(Explainer):
 
         # calculate gradients for batches
         batches = []
-        for path in paths_ds:
+        for i, path in enumerate(paths_ds):
 
             if target is not None:
                 paths_b, target_b = path
