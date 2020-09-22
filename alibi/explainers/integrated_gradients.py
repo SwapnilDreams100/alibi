@@ -350,7 +350,8 @@ class IntegratedGradients(Explainer):
         self.n_steps = n_steps
         self.method = method
         self.internal_batch_size = internal_batch_size
-
+    
+    @tf.function
     def explain(self,
                 X: np.ndarray,
                 baselines: Union[None, int, float, np.ndarray] = None,
